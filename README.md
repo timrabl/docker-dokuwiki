@@ -1,7 +1,8 @@
 # docker-dokuwiki-alpine
-Dokuwiki docker image inside a alpine image (v3.11) [Written by @TimRabl](https://github.com/timrabl/ "@TimRabl GitHub")
+Dokuwiki docker image inside a alpine image (v3.11)  
+[Written by @TimRabl](https://github.com/timrabl/ "@TimRabl GitHub")  
 **Unencrypted traffic is not supported !**
-  <br></br>
+ <br></br>
 
 
 # Quickstart
