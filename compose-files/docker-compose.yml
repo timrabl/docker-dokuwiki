@@ -1,0 +1,17 @@
+version: '3.3'
+services:
+  dokuwiki:
+    image: dokuwiki:latest
+    restart: unless-stopped
+    volumes:
+      - php_sessions:/etc/apache2/php_sessions
+      - data:/var/www/localhost/htdocs/data
+    environment:
+      #      LDAP_BIND_DN: ''
+      #      LDAP_BIND_PW: ''
+      SERVER_NAME: 
+    ports:
+      - 443:443
+volumes:
+  php_sessions:
+  data:
