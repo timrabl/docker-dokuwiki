@@ -26,10 +26,10 @@ Dokuwiki docker image inside a alpine image (v3.12)
 | Variable | Explanation |
 | -------- | ----------- |
 | *openssl:* | |
-| SSL_EXPIRE | The time period until the certicficate becomes invalid |
+| SSL_EXPIRE **(required)** | The time period until the certicficate becomes invalid |
 | SSL_C | Country code (e.q. US, GB, DE, ...) |
 | SSL_ST | State (e.q. London ) |
 | SSL_L | Location (e.q. London ) |
 | SSL_O | Organization (e.q. Example Organisation ) |
 | SSL_OU | Organizational Unit (e.q. IT Department ) |
-| SSL_CN | Common Name (e.q. example.com ) |
+| SSL_CN **(required)** | Common Name (e.q. example.com ) |
