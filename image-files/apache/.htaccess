@@ -1,6 +1,6 @@
 ## You should disable Indexes and MultiViews either here or in the
 ## global config. Symlinks maybe needed for URL rewriting.
-Options -Indexes -MultiViews +FollowSymLinks
+# Options -Indexes -MultiViews +FollowSymLinks
 
 ## make sure nobody gets the htaccess, README, COPYING or VERSION files
 <Files ~ "^([\._]ht|README$|VERSION$|COPYING$)">
