@@ -1,5 +1,1 @@
-.git
-Makefile
-compose-files/
-**/*.md
-**/*.yml
+.git/
