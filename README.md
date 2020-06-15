@@ -1,7 +1,7 @@
 # docker-dokuwiki-alpine
 
-Dokuwiki docker image inside a alpine image (v3.12)
-**Unencrypted traffic is not supported !**
+Dokuwiki docker image inside a alpine image (v3.12)  
+**Unencrypted traffic is not supported !**  
 
 [Written by @TimRabl](https://github.com/timrabl/ "@TimRabl GitHub")  
  <br></br>
@@ -11,8 +11,9 @@ Dokuwiki docker image inside a alpine image (v3.12)
 
 #### stable
 
-The stable dokuwiki version without the `ìnstall.php`.
-This means you need to provide a existing dokuwiki data volume with:
+The stable dokuwiki version without the `ìnstall.php`.  
+This means you need to provide a existing dokuwiki data volume to work.
+This is done with:
 
 `-v {VOLUME_NAME}:/var/www/localhost/htdocs/data`
 
@@ -23,7 +24,16 @@ This means you don't have to provide a data volume but it's recommend if you wan
 
 #### rc
 
+The *release candidate 3 ( Hogfather )* Version without the `install.php`.
+As mentioned before, without the installer you need a existing data volume.
+Look at the stable section to see how to do this.
+
+
 #### rc-installer
+
+The *release candidate 3 ( Hogfather )* Version with the default installer.
+As mentioned before, it's recommended to provide a data vaolume.
+Look at the stable section to see how to do this.
 
 
 ## Environment
