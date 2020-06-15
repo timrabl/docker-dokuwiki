@@ -1,10 +1,10 @@
 FROM alpine:3.12
 LABEL maintainer="Tim Rabl https://github.com/timrabl/"
 
-COPY dokuwiki-stable/ /var/www/localhost/htdocs
 COPY apache/httpd.conf /etc/apache2/httpd.conf
 COPY apache/.htaccess /var/www/localhost/htdocs/
-COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+
+COPY dokuwiki-stable/ /var/www/localhost/htdocs
 
  RUN apk --update --no-cache add apache2 apache2-ssl php7 php7-apache2 php7-fpm php7-ldap php7-json php7-session php7-xml &&\
      mkdir /etc/apache2/php_sessions /etc/apache2/certs &&\
@@ -18,5 +18,5 @@ COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
      chmod 2775 data/attic data/cache data/index data/locks data/media data/meta data/pages data/tmp data/media_attic data/media_meta &&\
      chown apache:nogroup data/attic data/cache data/index data/locks data/media data/meta data/pages data/tmp data/media_attic data/media_meta
 
-
+COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]

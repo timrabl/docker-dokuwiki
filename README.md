@@ -7,50 +7,29 @@ Dokuwiki docker image inside a alpine image (v3.12)
  <br></br>
 
 
-## Version / Tags
+## Versions / Tags
 
-#### stable
-
-The stable dokuwiki version without the `ìnstall.php`.  
-This means you need to provide a existing dokuwiki data volume to work.
-This is done with:
+| Tag | Description |
+|-----|-------------|
+| stable | Image based on the stable dokuwiki version |
+| stable-installer | Pretty much the same as the stable version above, except for the missing *install.php* file |
+| rc | Image based on the release candidate version of dokuwiki, the actual release candidate version is provided above |
+|rc-installer | Pretty much the same again... based on the release-candidate version of dokuwiki but withou the *install.php* file |
+| *coming soon:*| |
+| stable-ldap | Stable image with *ldap* login support |
+| rc-ldap | Release candidate image with *ldap* support |
 
 `-v {VOLUME_NAME}:/var/www/localhost/htdocs/data`
 
-#### stable-installer
-
-The same version as the previous mentioned stable version, but with the `install.php`.
-This means you don't have to provide a data volume but it's recommend if you want to prevent data loss.
-
-#### rc
-
-The *release candidate 3 ( Hogfather )* Version without the `install.php`.
-As mentioned before, without the installer you need a existing data volume.
-Look at the stable section to see how to do this.
-
-
-#### rc-installer
-
-The *release candidate 3 ( Hogfather )* Version with the default installer.
-As mentioned before, it's recommended to provide a data vaolume.
-Look at the stable section to see how to do this.
-
-
 ## Environment
-**Useable compose enviroment variables:**
 
 | Variable | Explanation |
 | -------- | ----------- |
-| *apache:* ||
-| SERVER_NAME | the server's comon name for SSL certificates |
-<br></br>
-
-**Optional in the distant future:**
-
-| Variable | Explanation |
-| -------- | ----------- |
-| *ldap:* ||
-| LDAP_BIND_DN | Your LDAP **bindDN** for authentication with a LDAP server. Make sure that the LDAP server is reachable from inside this container |
-| LDAP_BIND_PW | Your LDAP **bindPW** (the password for the **bindDN**)|
-<br></br>
-
+| *openssl:* | |
+| SSL_EXPIRE | The time period until the certicficate becomes invalid |
+| SSL_C | Country code (e.q. US, GB, DE, ...) |
+| SSL_ST | State (e.q. London ) |
+| SSL_L | Location (e.q. London ) |
+| SSL_O | Organization (e.q. Example Organisation ) |
+| SSL_OU | Organizational Unit (e.q. IT Department ) |
+| SSL_CN | Common Name (e.q. example.com ) |
