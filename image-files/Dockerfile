@@ -16,8 +16,8 @@ COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
      chown apache:apache . &&\
      chmod -R 775 data/ conf/ &&\
      chown apache:nogroup data/ conf/ &&\
-     chmod 2775 data/attic data/cache data/index data/locks data/media data/meta data/pages data/tmp data/media_attic &&\
-     chown apache:nogroup data/attic data/cache data/index data/locks data/media data/meta data/pages data/tmp data/media_attic
+     chmod 2775 data/attic data/cache data/index data/locks data/media data/meta data/pages data/tmp data/media_attic data/media_meta &&\
+     chown apache:nogroup data/attic data/cache data/index data/locks data/media data/meta data/pages data/tmp data/media_attic data/media_meta
 
 
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
