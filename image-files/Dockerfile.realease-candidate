@@ -1,7 +1,7 @@
 FROM alpine:3.12
 LABEL maintainer="Tim Rabl https://github.com/timrabl/"
 
-COPY dokuwikirelease-candidate/ /var/www/localhost/htdocs
+COPY dokuwiki-release-candidate/ /var/www/localhost/htdocs
 COPY apache/httpd.conf /etc/apache2/httpd.conf
 COPY apache/.htaccess /var/www/localhost/htdocs/
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
