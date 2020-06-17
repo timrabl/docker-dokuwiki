@@ -1,9 +1,9 @@
 # docker-dokuwiki-alpine
 
-Dokuwiki docker image inside a alpine image (v3.12)  
-**Unencrypted traffic is not supported !**  
+Dokuwiki docker image inside a alpine image (v3.12)
+**Unencrypted traffic is not supported !**
 
-[Written by @TimRabl](https://github.com/timrabl/ "@TimRabl GitHub")  
+[Written by @TimRabl](https://github.com/timrabl/ "@TimRabl GitHub")
  <br></br>
 
 
@@ -19,14 +19,12 @@ Dokuwiki docker image inside a alpine image (v3.12)
 | stable-ldap | Stable image with *ldap* login support |
 | rc-ldap | Release candidate image with *ldap* support |
 
-`-v {VOLUME_NAME}:/var/www/localhost/htdocs/data`
-
 ## Environment
 
 | Variable | Explanation |
 | -------- | ----------- |
 | *openssl:* | |
-| SSL_EXPIRE **(required)** | The time period until the certicficate becomes invalid |
+| SSL_EXPIRE **(required)** | The time period until the certificate becomes invalid |
 | SSL_C | Country code (e.q. US, GB, DE, ...) |
 | SSL_ST | State (e.q. London ) |
 | SSL_L | Location (e.q. London ) |
