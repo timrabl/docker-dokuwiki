@@ -1,14 +1,16 @@
 version: '3.3'
-    services:
-      dokuwiki:
-        image: timrabl/dokuwiki:${TAG}
-        restart: unless-stopped
-        env_file:
-            - .env
-        volumes:
-            - data:/var/www/localhost/htdocs/data
-            - ssl:/etc/apache2/cert
-            - php_sessions:/etc/apache2/php_sessions
+services:
+  dokuwiki:
+    image: timrabl/dokuwiki:${VERSION}
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - data:/var/www/localhost/htdocs/data
+      - ssl:/etc/apache2/cert
+      - php_sessions:/etc/apache2/php_sessions
+    ports:
+      - 0.0.0.0:443:443
 volumes:
     data:
     ssl:
