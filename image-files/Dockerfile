@@ -2,9 +2,9 @@ FROM alpine:3.12
 LABEL maintainer="Tim Rabl https://github.com/timrabl/"
 
 # Build arguments
-ARG VERSION=stable
-ARG INSTALLER=false
-ARG LDAP=true
+ARG VERSION
+ARG INSTALLER
+ARG LDAP
 
 # docker entrypoint script for running things on startup
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
