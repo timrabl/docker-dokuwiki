@@ -5,6 +5,31 @@
 # $IMAGE_NAME var is injected into the build so the tag is correct.
 echo "[***] Build hook running"
 
-docker build \
-    --build-arg VERSION=${DOCKER_TAG}
-    -t ${IMAGE_NAME} image-files/
+BASE=`echo ${DOCKER_TAG} | cut -d "-" -f 1`
+INSTALLER=`echo ${DOCKER_TAG} | cut -d "-" -f 2`
+LDAP=`echo ${DOCKER_TAG} | cut -d "-" -f 3`
+
+
+IMD="image-files/"
+
+if [ $BASE == "latest" ]; then
+    if [ $INSTALLER == "true" ] && [ $LDAP == "true" ]; then
+        docker build --build-arg VERSION=stable --build-arg INSTALLER=true --build-arg LDAP=true -t dokuwiki:latest $(IMD)
+    elif [ $INSTALLER == "true" ]; then
+        docker build --build-arg VERSION=stable --build-arg INSTALLER=true -t dokuwiki:latest $(IMD)
+    elif  [ $LDAP == "true" ]; then
+        docker build --build-arg VERSION=stable --build-arg LDAP=true -t dokuwiki:latest $(IMD)
+    else
+        docker build --build-arg VERSION=stable -t dokuwiki:latest $(IMD)
+    fi
+elif [ $BASE == "rc" ]; then
+    if [ $INSTALLER == "true" ] && [ $LDAP == "true" ]; then
+        docker build --build-arg VERSION=stable --build-arg INSTALLER=true --build-arg LDAP=true -t dokuwiki:latest $(IMD)
+    elif [ $INSTALLER == "true" ]; then
+        docker build --build-arg VERSION=stable --build-arg INSTALLER=true -t dokuwiki:latest $(IMD)
+    elif  [ $LDAP == "true" ]; then
+        docker build --build-arg VERSION=stable --build-arg LDAP=true -t dokuwiki:latest $(IMD)
+    else
+        docker build --build-arg VERSION=stable -t dokuwiki:latest $(IMD)
+    fi
+fi
