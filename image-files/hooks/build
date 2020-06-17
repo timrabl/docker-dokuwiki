@@ -16,27 +16,30 @@ if [ $C1 == "latest" ]; then
     if [ $C2 == "installer" ]; then
         if [ $C3 == "ldap" ]; then
             docker build --build-arg VERSION=stable --build-arg INSTALLER=true --build-arg LDAP=true -t dokuwiki:latest-installer-ldap $(IMD)
+        else
+            docker build --build-arg VERSION=stable --build-arg INSTALLER=true -t dokuwiki:latest-installer $(IMD)
         fi
-        docker build --build-arg VERSION=stable --build-arg INSTALLER=true -t dokuwiki:latest-installer $(IMD)
     elif [ $C2 == "ldap" ]; then
         if [ $C3 == "installer" ]; then
             docker build --build-arg VERSION=stable --build-arg INSTALLER=true --build-arg LDAP=true -t dokuwiki:latest-installer-ldap $(IMD)
+        else
+            docker build --build-arg VERSION=stable --build-arg LDAP=true -t dokuwiki:latest-ldap $(IMD)
         fi
-        docker build --build-arg VERSION=stable --build-arg LDAP=true -t dokuwiki:latest-ldap $(IMD)
-    else
-        docker build --build-arg VERSION=stable -t dokuwiki:latest $(IMD)
+    fi
+    docker build --build-arg VERSION=stable -t dokuwiki:latest $(IMD)
 elif [ $C1 == "rc" ]; then
     if [ $C2 == "installer" ]; then
         if [ $C3 == "ldap" ]; then
             docker build --build-arg VERSION=release-candidate --build-arg INSTALLER=true --build-arg LDAP=true -t dokuwiki:rc-installer-ldap $(IMD)
+        else
+            docker build --build-arg VERSION=release-candidate --build-arg INSTALLER=true -t dokuwiki:rc-installer $(IMD)
         fi
-        docker build --build-arg VERSION=release-candidate --build-arg INSTALLER=true -t dokuwiki:rc-installer $(IMD)
     elif [ $C2 == "ldap" ]; then
         if [ $C3 == "installer" ]; then
             docker build --build-arg VERSION=release-candidate --build-arg INSTALLER=true --build-arg LDAP=true -t dokuwiki:rc-installer-ldap $(IMD)
+        else
+            docker build --build-arg VERSION=release-candidate --build-arg LDAP=true -t dokuwiki:rc-ldap $(IMD)
         fi
-        docker build --build-arg VERSION=release-candidate --build-arg LDAP=true -t dokuwiki:rc-ldap $(IMD)
-    else
-        docker build --build-arg VERSION=release-candidate -t dokuwiki:rc $(IMD)
     fi
+    docker build --build-arg VERSION=release-candidate -t dokuwiki:rc $(IMD)
 fi
