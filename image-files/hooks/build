@@ -5,29 +5,22 @@
 # $IMAGE_NAME var is injected into the build so the tag is correct.
 echo "[***] Build hook running"
 
+#
 
-C1=`echo ${DOCKER_TAG} | cut -d "-" -f 1 | cut -d " " -f 1`
-C2=`echo ${DOCKER_TAG} | cut -d "-" -f 2 | cut -d " " -f 1`
-C3=`echo ${DOCKER_TAG} | cut -d "-" -f 3 | cut -d " " -f 1`
+C1=`echo ${DOCKER_TAG} | cut -d "-" -f 1`
+C2=`echo ${DOCKER_TAG} | cut -s -d "-" -f 2`
+C3=`echo ${DOCKER_TAG} | cut -s -d "-" -f 3`
 
 [ "${C1}" == "latest" ] && FLAG_VERSION="--build-arg VERSION=latest"
 
 [ "${C1}" == "rc" ] && FLAG_VERSION="--build-arg VERSION=release-candidate"
 
-if [ "${C2}" == "installer" ]; then
-    FLAG_INSTALLER="--build-arg INSTALLER=true"
-fi
+[ "${C2}" == "installer" ] &&  FLAG_INSTALLER="--build-arg INSTALLER=true"
 
-if [ "${C2}" == "ldap" ]; then
-    FLAG_LDAP="--build-arg LDAP=true"
-fi
+[ "${C2}" == "ldap" ] && FLAG_LDAP="--build-arg LDAP=true"
 
-if [ "${C2}" != "${C3}" ] && [ "${C3}" == "installer" ]; then
-    FLAG_INSTALLER="--build-arg INSTALLER=true"
-fi
+[ "${C2}" != "${C3}" ] && [ "${C3}" == "installer" ] && FLAG_INSTALLER="--build-arg INSTALLER=true"
 
-if [ "${C2}" != "${C3}" ] && [ "${C3}" == "ldap" ]; then
-    FLAG_LDAP="--build-arg LDAP=true"
-fi
+[ "${C2}" != "${C3}" ] && [ "${C3}" == "ldap" ] && FLAG_LDAP="--build-arg LDAP=true"
 
 docker build -t dokuwiki:${DOCKER_TAG} ${FLAG_VERSION} ${FLAG_INSTALLER} ${FLAG_LDAP} .
