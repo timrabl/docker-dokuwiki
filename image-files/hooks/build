@@ -11,27 +11,27 @@ C3=`echo ${DOCKER_TAG} | cut -d "-" -f 3`
 
 echo "$C1 $C2 $C3"
 
-if [ $C1 == "latest" ]; then
+if [ "${C1}" == "latest" ]; then
     FLAG_VERSION="--build-arg VERSION=latest"
 fi
 
-if [ $C1 == "rc" ]; then
+if [ "${C1}" == "rc" ]; then
     FLAG_VERSION="--build-arg VERSION=release-candidate"
 fi
 
-if [ $C2 == "installer" ]; then
+if [ "${C2}" == "installer" ]; then
     FLAG_INSTALLER="--build-arg INSTALLER=true"
 fi
 
-if [ $C2 == "ldap" ]; then
+if [ "${C2}" == "ldap" ]; then
     FLAG_LDAP="--build-arg LDAP=true"
 fi
 
-if [ $C2 != $C3 ] && [ $C3 == "installer" ]; then
+if [ "${C2}" != "${C3}" ] && [ "${C3}" == "installer" ]; then
     FLAG_INSTALLER="--build-arg INSTALLER=true"
 fi
 
-if [ $C2 != $C3 ] && [ $C3 == "ldap" ]; then
+if [ "${C2}" != "${C3}" ] && [ "${C3}" == "ldap" ]; then
     FLAG_LDAP="--build-arg LDAP=true"
 fi
 
