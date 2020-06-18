@@ -12,13 +12,13 @@ C3=`echo ${DOCKER_TAG} | cut -d "-" -f 3`
 
 IMD="image-files/"
 
-if [[ $C1 == "latest" ]]; then FLAG_VERSION="--build-arg VERSION=latest"; fi
-if [[ $C1 == "rc" ]]; then FLAG_VERSION="--build-arg VERSION=release-candidate"; fi
+if [ $C1 == "latest" ]; then FLAG_VERSION="--build-arg VERSION=latest"; fi
+if [ $C1 == "rc" ]; then FLAG_VERSION="--build-arg VERSION=release-candidate"; fi
 
-if [[ $C2 == "installer" ]]; then FLAG_INSTALLER="--build-arg INSTALLER=true"; fi
-if [[ $C2 == "ldap" ]]; then FLAG_LDAP="--build-arg LDAP=true"; fi
+if [ $C2 == "installer" ]; then FLAG_INSTALLER="--build-arg INSTALLER=true"; fi
+if [ $C2 == "ldap" ]; then FLAG_LDAP="--build-arg LDAP=true"; fi
 
-if [[ $C2 != $C3 ]] && [[ $C3 == "installer" ]]; then FLAG_INSTALLER="--build-arg INSTALLER=true"; fi
-if [[ $C2 != $C3 ]] && [[ $C3 == "ldap" ]]; then FLAG_LDAP="--build-arg LDAP=true"; fi
+if [ $C2 != $C3 ] && [ $C3 == "installer" ]; then FLAG_INSTALLER="--build-arg INSTALLER=true"; fi
+if [ $C2 != $C3 ] && [ $C3 == "ldap" ]; then FLAG_LDAP="--build-arg LDAP=true"; fi
 
-docker build -t ${IMAGE_NAME}:${DOCKER_TAG} ${FLAG_VERSION} ${FLAG_INSTALLER} ${FLAG_LDAP} ${IMD}
+docker build -t :${IMAGE_NAME} ${FLAG_VERSION} ${FLAG_INSTALLER} ${FLAG_LDAP} ${IMD}
