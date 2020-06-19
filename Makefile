@@ -30,7 +30,7 @@ get-rc: --pre-build-steps
 	rm -rf $(_TMP_DIR)$(_RC_NAME).tgz $(_TMP_DIR)
 
 build-stable:
-	docker build -t dokuwiki:stable $(_IMAGE_PATH)
+	docker build -t dokuwiki:latest $(_IMAGE_PATH)
 
 build-stable-installer-ldap:
 	docker build --build-arg LDAP=true --build-arg INSTALLER=true -t dokuwiki:st-i-ldap $(_IMAGE_PATH)
