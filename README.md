@@ -35,12 +35,14 @@ Build the latest / stable docker image ( including the install.php ) and tag it 
 
 #### build-latest-ldap
 Build the latest / stable docker image and enables LDAP options in the Dokuwiki.php configuration file.
+</br>
 **=> this enables LDAP enviroment variables for LDAP Support**
 </br>
 `docker build -t dokuwiki:latest-ldap --build-arg VERSION=latest --build-arg LDAP=true image-files/`
 
 #### build-latest-installer-ldap
 Build the latest / stable docker image ( including the install.php ) and enables LDAP options in the Dokuwiki.php configuration file.
+</br>
 **=> this enables LDAP enviroment variables for LDAP Support**
 </br>
 `docker build -t dokuwiki:latest-installer-ldap --build-arg VERSION=latest --build-arg INSTALLER=true --build-arg LDAP=true image-files/`
@@ -57,18 +59,21 @@ Build the release-candidate docker image ( including the install.php ) and tag i
 
 #### build-rc-ldap
 Build the release-canidate docker image and enables LDAP options in the Dokuwiki.php configuration file.
+</br>
 **=> this enables LDAP enviroment variables for LDAP Support**
 </br>
 `docker build -t dokuwiki:rc-ldap --build-arg VERSION=latest --build-arg LDAP=true image-files/`
 
 #### build-rc-installer-ldap
 Build the release-candidate docker image ( including the install.php ) and enables LDAP options in the Dokuwiki.php configuration file.
+</br>
 **=> this enables LDAP enviroment variables for LDAP Support**
 </br>
 `docker build -t dokuwiki:rc-installer-ldap --build-arg VERSION=latest --build-arg INSTALLER=true --build-arg LDAP=true image-files/`
 
 ## enviroment varibales
 These are the main enviroment variables which can / must be passed to the docker image.
+</br>
 **Required vars are marked with an * at the end !**
 
 | Variable | Explanation |
