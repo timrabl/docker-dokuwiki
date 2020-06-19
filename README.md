@@ -1,5 +1,12 @@
 # Dokuwiki Docker image based on Alpine v.3.12
 
+##--------------------------------------------
+
+!!! LDAP SUPPORT  IS UNDER CONSTRUCTION !!!
+
+##--------------------------------------------
+
+
 ## Intro
 DokuWiki is a simple to use and highly versatile Open Source wiki software that doesn't require
 a database. It is loved by users for its clean and readable syntax. The ease of maintenance,
