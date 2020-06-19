@@ -11,16 +11,19 @@ C1=`echo ${DOCKER_TAG} | cut -d "-" -f 1`
 C2=`echo ${DOCKER_TAG} | cut -s -d "-" -f 2`
 C3=`echo ${DOCKER_TAG} | cut -s -d "-" -f 3`
 
-[ "${C1}" == "latest" ] && FLAG_VERSION="--build-arg VERSION=latest"
 
-[ "${C1}" == "rc" ] && FLAG_VERSION="--build-arg VERSION=release-candidate"
 
-[ "${C2}" == "installer" ] &&  FLAG_INSTALLER="--build-arg INSTALLER=true"
 
-[ "${C2}" == "ldap" ] && FLAG_LDAP="--build-arg LDAP=true"
+[ ! -z "${C1}" ] && [ "${C1}" == "latest" ] && FLAG_VERSION="--build-arg VERSION=latest"
 
-[ "${C2}" != "${C3}" ] && [ "${C3}" == "installer" ] && FLAG_INSTALLER="--build-arg INSTALLER=true"
+[ ! -z "${C1}" ] && [ "${C1}" == "rc" ] && FLAG_VERSION="--build-arg VERSION=release-candidate"
 
-[ "${C2}" != "${C3}" ] && [ "${C3}" == "ldap" ] && FLAG_LDAP="--build-arg LDAP=true"
+[ ! -z "${C2}" ] && [ "${C2}" == "installer" ] &&  FLAG_INSTALLER="--build-arg INSTALLER=true"
+
+[ ! -z "${C2}" ] && [ "${C2}" == "ldap" ] && FLAG_LDAP="--build-arg LDAP=true"
+
+[ ! -z "${C3}" ] && [ "${C2}" != "${C3}" ] && [ "${C3}" == "installer" ] && FLAG_INSTALLER="--build-arg INSTALLER=true"
+
+[ ! -z "${C3}" ] && [ "${C2}" != "${C3}" ] && [ "${C3}" == "ldap" ] && FLAG_LDAP="--build-arg LDAP=true"
 
 docker build -t dokuwiki:${DOCKER_TAG} ${FLAG_VERSION} ${FLAG_INSTALLER} ${FLAG_LDAP} .
