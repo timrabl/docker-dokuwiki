@@ -4,9 +4,8 @@ _STABLE_NAME=dokuwiki-stable
 _RC_URL=https://download.dokuwiki.org/src/dokuwiki/dokuwiki-rc.tgz
 _RC_NAME=dokuwiki-release-candidate
 
-
-#----------------------------------
 _IMAGE_PATH=image-files/
+_COMPOSE_PATH=compose-files/
 _TMP_DIR=$(_IMAGE_PATH)tmp/
 
 .PHONY: --pre-build-steps get-stable get-rc
@@ -14,14 +13,11 @@ _TMP_DIR=$(_IMAGE_PATH)tmp/
 --pre-build-steps:
 	[ ! -d "$(_TMP_DIR)" ] && mkdir $(_TMP_DIR)
 
-
-#	[[ "$$(xmllint --html --xpath "//body/form/div/div/div[2]/div/div[2]/div/ul/li//label[@class='radio']/span[../input[@value='stable']]/text()" - <<< $$(wget https://download.dokuwiki.org/ -q -O -))" == "$$(cat $(_IMAGE_PATH)$(_STABLE_NAME)/VERSION)" ]] && echo "dokuwiki ( $(_IMAGE_PATH)$(_STABLE_NAME) ) already newest version !"; exit 1 | :
 get-stable: --pre-build-steps
 	[ ! -d "$(_IMAGE_PATH)$(_STABLE_NAME)" ] && mkdir $(_IMAGE_PATH)$(_STABLE_NAME) || :
 	curl $(_STABLE_URL) --output $(_TMP_DIR)$(_STABLE_NAME).tgz -#
 	tar -xzvf $(_TMP_DIR)$(_STABLE_NAME).tgz --strip-components=1 -C $(_IMAGE_PATH)$(_STABLE_NAME)
 	rm -rf $(_TMP_DIR)$(_STABLE_NAME).tgz $(_TMP_DIR)
-
 
 get-rc: --pre-build-steps
 	curl $(_RC_URL) --output $(_TMP_DIR)$(_RC_NAME).tgz -#
@@ -29,8 +25,41 @@ get-rc: --pre-build-steps
 	tar -xzvf $(_TMP_DIR)$(_RC_NAME).tgz --strip-components=1 -C $(_IMAGE_PATH)$(_RC_NAME)
 	rm -rf $(_TMP_DIR)$(_RC_NAME).tgz $(_TMP_DIR)
 
-build-stable:
-	docker build -t dokuwiki:latest $(_IMAGE_PATH)
 
-build-stable-installer-ldap:
-	docker build --build-arg LDAP=true --build-arg INSTALLER=true -t dokuwiki:st-i-ldap $(_IMAGE_PATH)
+build-laest:
+	docker build -t dokuwiki:latest --build-arg VERSION=latest $(_IMAGE_PATH)
+
+build-latest-installer:
+	docker build -t dokuwiki:latest --build-arg VERSION=latest --build-arg INSTALLER=true $(_IMAGE_PATH)
+
+build-latest-ldap:
+	docker build -t dokuwiki:latest --build-arg VERSION=latest --build-arg LDAP_true $(_IMAGE_PATH)
+
+build-latest-installer-ldap:
+	docker build -t dokuwiki:latest --build-arg VERSION=latest --build-arg INSTALLER=true --build-arg LDAP_true $(_IMAGE_PATH)
+
+
+build-laest:
+	docker build -t dokuwiki:rc --build-arg VERSION=release-candidate $(_IMAGE_PATH)
+
+build-release-candidate-installer:
+	docker build -t dokuwiki:rc --build-arg VERSION=release-candidate --build-arg INSTALLER=true $(_IMAGE_PATH)
+
+build-release-candidate-ldap:
+	docker build -t dokuwiki:rc --build-arg VERSION=release-candidate --build-arg LDAP_true $(_IMAGE_PATH)
+
+build-release-candidate-installer-ldap:
+	docker build -t dokuwiki:rc --build-arg VERSION=release-candidate --build-arg INSTALLER=true --build-arg LDAP_true $(_IMAGE_PATH)
+
+compose-up:
+	docker-compose -f $(_COMPOSE_PATH)/docker-compose.yml up
+
+compose-up-detached:
+	docker-compose -f $(_COMPOSE_PATH)/docker-compose.yml up -d
+
+compose-down:
+	docker-compose -f $(_COMPOSE_PATH)/docker-compose.yml down
+
+compose-down-all:
+	docker-compose -f $(_COMPOSE_PATH)/docker-compose.yml down -v
+
