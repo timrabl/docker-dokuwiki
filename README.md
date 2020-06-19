@@ -15,8 +15,11 @@ Dokuwiki docker image inside a alpine image (v3.12)
 | stable-installer | Pretty much the same as the stable version above, except for the missing *install.php* file |
 | rc | Image based on the release candidate version of dokuwiki, the actual release candidate version is provided above |
 |rc-installer | Pretty much the same again... based on the release-candidate version of dokuwiki but withou the *install.php* file |
-| *coming soon:*| |
+
+| Tag | Description |
+|*coming soon:*| |
 | stable-ldap | Stable image with *ldap* login support |
+
 | rc-ldap | Release candidate image with *ldap* support |
 
 ## Environment

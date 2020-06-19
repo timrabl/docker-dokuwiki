@@ -53,3 +53,4 @@ if [ ! -z "${C3}" ]; then
 fi
 
 docker build -t dokuwiki:${DOCKER_TAG} ${FLAG_VERSION} ${FLAG_TWO} ${FLAG_THREE} .
+docker tag ${IMAGE_NAME}:${DOCKER_TAG} ${IMAGE_NAME}
