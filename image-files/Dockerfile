@@ -39,9 +39,9 @@ $conf['plugin']['authldap']['version'] = getenv('LDAP_VERSION'); \
     cd /etc/apache2 &&\
     mkdir php_sessions certs &&\
     rm -f conf.d/ssl.conf &&\
-    echo $" \
+    echo $' \
 sessions.save_path = "/etc/apache2/php_sessions"\n \
-sessions.use_only_cookies = 1 ">> /etc/php7/conf.d/00_custom.ini &&\
+sessions.use_only_cookies = 1 '>> /etc/php7/conf.d/00_custom.ini &&\
     cd /var/www/localhost/htdocs &&\
     if [ "${INSTALLER}" == "false" ]; then rm -f install.php; fi&&\
     rm -f index.html &&\
