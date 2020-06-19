@@ -128,6 +128,9 @@ If you run the Image via `docker run` your can pass the environmen variables wit
 | SSL_O | Organization (e.q. Example Organisation ) |
 | SSL_OU | Organizational Unit (e.q. IT Department ) |
 | SSL_CN **\*** | Common Name (e.q. example.com ) |
+
+| Variable | Explanation |
+| -------- | ----------- |
 | **ldap:** ||
 | LDAP_SERVER | coming soon |
 | LDAP_USER_TREE | coming soon |
@@ -139,6 +142,9 @@ If you run the Image via `docker run` your can pass the environmen variables wit
 | LDAP_BIN_PW | coming soon |
 | LDAP_STARTTLS | coming soon |
 | LDAP_VERSION | coming soon |
+
+| Variable | Explanation |
+| -------- | ----------- |
 | **proxy:** ||
 | comming | soon |
 
