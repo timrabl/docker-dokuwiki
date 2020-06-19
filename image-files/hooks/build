@@ -9,6 +9,8 @@ C1=$(echo ${DOCKER_TAG} | cut -d "-" -f 1)
 C2=$(echo ${DOCKER_TAG} | cut -s -d "-" -f 2)
 C3=$(echo ${DOCKER_TAG} | cut -s -d "-" -f 3)
 
+echo "C1: $C1 C2: $C2 C3: $C3"
+
 if [ ! -z "${C1}" ]; then
     if [ "${C1}" == "latest" ]; then
         echo "[***] Set Version tag to: latest"
