@@ -13,17 +13,38 @@ C3=`echo ${DOCKER_TAG} | cut -s -d "-" -f 3`
 
 
 
+if [ ! -z "${C1}" ]; then
+    if [ "${C1}" == "latest" ]; then
+        FLAG_VERSION="--build-arg VERSION=latest"
+    elif [ "${C1}" == "rc" ]; then
+        FLAG_VERSION="--build-arg VERSION=release-candidate"
+    else
+        echo "[***] Invalid Tag: ${DOCKER_TAG}"
+    fi
+fi
 
-[ ! -z "${C1}" ] && [ "${C1}" == "latest" ] && FLAG_VERSION="--build-arg VERSION=latest"
+if [ ! -z "${C2}" ]; then
+    if [ "${C2}" == "installer" ]; then
+        FLAG_INSTALLER="--build-arg INSTALLER=true"
+    elif [ "${C2}" == "ldap" ]; then
+        FLAG_LDAP="--build-arg LDAP=true"
+    else
+        echo "[***] Invalid Tag: ${DOCKER_TAG}"
+        echo "[***] Failed while parsing second tag..."
+    fi
+fi
 
-[ ! -z "${C1}" ] && [ "${C1}" == "rc" ] && FLAG_VERSION="--build-arg VERSION=release-candidate"
-
-[ ! -z "${C2}" ] && [ "${C2}" == "installer" ] &&  FLAG_INSTALLER="--build-arg INSTALLER=true"
-
-[ ! -z "${C2}" ] && [ "${C2}" == "ldap" ] && FLAG_LDAP="--build-arg LDAP=true"
-
-[ ! -z "${C3}" ] && [ "${C2}" != "${C3}" ] && [ "${C3}" == "installer" ] && FLAG_INSTALLER="--build-arg INSTALLER=true"
-
-[ ! -z "${C3}" ] && [ "${C2}" != "${C3}" ] && [ "${C3}" == "ldap" ] && FLAG_LDAP="--build-arg LDAP=true"
+if [ ! -z "${C3}" ]; then
+    if [ "${C2}" != "${C3}" ]; then
+        if [ "${C3}" == "installer" ]; then
+            FLAG_INSTALLER="--build-arg INSTALLER=true"
+        elif [ "${C3}" == "ldap" ]; then
+            FLAG_LDAP="--build-arg LDAP=true"
+        else
+            echo "[***] Invalid Tag: ${DOCKER_TAG}"
+            echo "Failed while parsing third tag..."
+        fi
+    fi
+fi
 
 docker build -t dokuwiki:${DOCKER_TAG} ${FLAG_VERSION} ${FLAG_INSTALLER} ${FLAG_LDAP} .
