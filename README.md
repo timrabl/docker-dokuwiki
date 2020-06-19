@@ -25,38 +25,46 @@ writes it into the tmp directory and extract it into the **image-files/dokuwiki-
 
 #### build-latest ( stable )
 Build the latest / stable docker image and Tag it with **latest**.
+</br>
 `docker build -t dokuwiki:latest --build-arg VERSION=latest image-files/`
 
 #### build-latest-installer
 Build the latest / stable docker image ( including the install.php ) and tag it with **latest-installer**.
+</br>
 `docker build -t dokuwiki:latest-installer --build-arg VERSION=latest --build-arg INSTALLER=true image-files/`
 
 #### build-latest-ldap
 Build the latest / stable docker image and enables LDAP options in the Dokuwiki.php configuration file.
 **=> this enables LDAP enviroment variables for LDAP Support**
+</br>
 `docker build -t dokuwiki:latest-ldap --build-arg VERSION=latest --build-arg LDAP=true image-files/`
 
 #### build-latest-installer-ldap
 Build the latest / stable docker image ( including the install.php ) and enables LDAP options in the Dokuwiki.php configuration file.
 **=> this enables LDAP enviroment variables for LDAP Support**
+</br>
 `docker build -t dokuwiki:latest-installer-ldap --build-arg VERSION=latest --build-arg INSTALLER=true --build-arg LDAP=true image-files/`
 
 #### build-rc ( release-canidate )
 Build the release-canidate docker image and Tag it with **rc**.
+</br>
 `docker build -t dokuwiki:rc --build-arg VERSION=latest image-files/`
 
 #### build-rc-installer
 Build the release-candidate docker image ( including the install.php ) and tag it with **release-candidate-installer**.
+</br>
 `docker build -t dokuwiki:rc-installer --build-arg VERSION=latest --build-arg INSTALLER=true image-files/`
 
 #### build-rc-ldap
 Build the release-canidate docker image and enables LDAP options in the Dokuwiki.php configuration file.
 **=> this enables LDAP enviroment variables for LDAP Support**
+</br>
 `docker build -t dokuwiki:rc-ldap --build-arg VERSION=latest --build-arg LDAP=true image-files/`
 
 #### build-rc-installer-ldap
 Build the release-candidate docker image ( including the install.php ) and enables LDAP options in the Dokuwiki.php configuration file.
 **=> this enables LDAP enviroment variables for LDAP Support**
+</br>
 `docker build -t dokuwiki:rc-installer-ldap --build-arg VERSION=latest --build-arg INSTALLER=true --build-arg LDAP=true image-files/`
 
 ## enviroment varibales
