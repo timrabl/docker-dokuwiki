@@ -77,7 +77,7 @@ Build the release-canidate docker image and Tag it with **rc**.
 ```sh
 docker build \
 	-t dokuwiki:rc \
-	--build-arg VERSION=latest \
+	--build-arg VERSION=release-candidate \
 	image-files/
 ```
 
@@ -86,7 +86,7 @@ Build the release-candidate docker image ( including the install.php ) and tag i
 ```sh
 docker build \
 	-t dokuwiki:rc-installer \
-	--build-arg VERSION=latest \
+	--build-arg VERSION=release-candidate \
 	--build-arg INSTALLER=true \
 	image-files/
 ```
@@ -96,7 +96,7 @@ Build the release-canidate docker image and enables LDAP options in the Dokuwiki
 ```sh
 docker build \
 	-t dokuwiki:rc-ldap \
-	--build-arg VERSION=latest \
+	--build-arg VERSION=release-candidate \
 	--build-arg LDAP=true \
 	image-files/
 ```
@@ -106,7 +106,7 @@ Build the release-candidate docker image ( including the install.php ) and enabl
 ```sh
 docker build \
 	-t dokuwiki:rc-installer-ldap \
-	--build-arg VERSION=latest \
+	--build-arg VERSION=release-candidate \
 	--build-arg INSTALLER=true \
 	--build-arg LDAP=true \
 	image-files/
