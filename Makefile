@@ -11,11 +11,11 @@ _TMP_DIR=$(_IMAGE_PATH)tmp/
 .PHONY: --pre-build-steps get-stable get-rc
 
 --pre-build-steps:
-	[ ! -d "$(_TMP_DIR)" ] && mkdir $(_TMP_DIR)
+	[ ! -d "$(_TMP_DIR)" ] && mkdir -p $(_TMP_DIR)
 
 get-stable: --pre-build-steps
-	[ ! -d "$(_IMAGE_PATH)$(_STABLE_NAME)" ] && mkdir $(_IMAGE_PATH)$(_STABLE_NAME) || :
 	curl $(_STABLE_URL) --output $(_TMP_DIR)$(_STABLE_NAME).tgz -#
+	[ ! -d "$(_IMAGE_PATH)$(_STABLE_NAME)" ] && mkdir $(_IMAGE_PATH)$(_STABLE_NAME) || :
 	tar -xzvf $(_TMP_DIR)$(_STABLE_NAME).tgz --strip-components=1 -C $(_IMAGE_PATH)$(_STABLE_NAME)
 	rm -rf $(_TMP_DIR)$(_STABLE_NAME).tgz $(_TMP_DIR)
 
@@ -33,11 +33,10 @@ build-latest-installer:
 	docker build -t dokuwiki:latest --build-arg VERSION=latest --build-arg INSTALLER=true $(_IMAGE_PATH)
 
 build-latest-ldap:
-	docker build -t dokuwiki:latest --build-arg VERSION=latest --build-arg LDAP_true $(_IMAGE_PATH)
+	docker build -t dokuwiki:latest --build-arg VERSION=latest --build-arg LDAP=true $(_IMAGE_PATH)
 
 build-latest-installer-ldap:
-	docker build -t dokuwiki:latest --build-arg VERSION=latest --build-arg INSTALLER=true --build-arg LDAP_true $(_IMAGE_PATH)
-
+	docker build -t dokuwiki:latest --build-arg VERSION=latest --build-arg INSTALLER=true --build-arg LDAP=true $(_IMAGE_PATH)
 
 build-laest:
 	docker build -t dokuwiki:rc --build-arg VERSION=release-candidate $(_IMAGE_PATH)
@@ -46,10 +45,10 @@ build-release-candidate-installer:
 	docker build -t dokuwiki:rc --build-arg VERSION=release-candidate --build-arg INSTALLER=true $(_IMAGE_PATH)
 
 build-release-candidate-ldap:
-	docker build -t dokuwiki:rc --build-arg VERSION=release-candidate --build-arg LDAP_true $(_IMAGE_PATH)
+	docker build -t dokuwiki:rc --build-arg VERSION=release-candidate --build-arg LDAP=true $(_IMAGE_PATH)
 
 build-release-candidate-installer-ldap:
-	docker build -t dokuwiki:rc --build-arg VERSION=release-candidate --build-arg INSTALLER=true --build-arg LDAP_true $(_IMAGE_PATH)
+	docker build -t dokuwiki:rc --build-arg VERSION=release-candidate --build-arg INSTALLER=true --build-arg LDAP=true $(_IMAGE_PATH)
 
 compose-up:
 	docker-compose -f $(_COMPOSE_PATH)/docker-compose.yml up
