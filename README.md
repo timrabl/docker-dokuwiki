@@ -116,8 +116,8 @@ docker build \
 These are the main enviroment variables which can / must be passed to the docker image.
 If you run the Image via `docker run` your can pass the environmen variables with: `-e VAR_NAME=VAR_VALUE`
 
-
 **Required vars are marked with an * at the end !**
+
 | Variable | Explanation |
 | -------- | ----------- |
 | **openssl:** ||
