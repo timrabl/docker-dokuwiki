@@ -2,23 +2,14 @@
 # Dokuwiki Docker image based on Alpine v.3.12
 [ Written by @TimRabl ]( https://github.com/timrabl/ "@TimRabl GitHub")
 
-#============================================#
-
-- LDAP SUPPORT  IS UNDER CONSTRUCTION !!!
-- PROXY SUPPORT IS UNDER CONSTRUCTION !!!
-
-#============================================#
-
-
 ## Intro
-DokuWiki is a simple to use and highly versatile Open Source wiki software that doesn't require
-a database. It is loved by users for its clean and readable syntax. The ease of maintenance,
-backup and integration makes it an administrator's favorite. Built in access controls and
-authentication connectors make DokuWiki especially useful in the enterprise context and
-the large number of plugins contributed by its vibrant community allow for a broad
+DokuWiki is a simple to use and highly versatile Open Source wiki software
+that doesn't require a database. It is loved by users for its clean and
+readable syntax. The ease of maintenance, backup and integration makes it an
+administrator's favorite. Built in access controls and authentication
+connectors make DokuWiki especially useful in the enterprise context and the
+large number of plugins contributed by its vibrant community allow for a broad
 range of use cases beyond a traditional wiki.
-
-
 
 ## Make
 For easier updating and deployment there is an `Makefile`.
@@ -42,6 +33,7 @@ docker build \
 
 #### build-latest-installer
 Build the latest /docker image ( including the install.php ) and tag it with **latest-installer** with the following command:
+</br>
 ```sh
 docker build \
 	-t dokuwiki:latest-installer \
@@ -52,6 +44,7 @@ docker build \
 
 #### build-latest-ldap
 Build the latest docker image and enables the LDAP options in the Dokuwiki.php configuration
+</br>
 ```sh
 docker build \
 	-t dokuwiki:latest-ldap \
@@ -62,7 +55,7 @@ docker build \
 
 #### build-latest-installer-ldap
 Build the latest docker image ( including the install.php ) and enables LDAP options in the Dokuwiki.php configuration file.
-
+</br>
 ```sh
 docker build \
 	-t dokuwiki:latest-installer-ldap \
@@ -74,6 +67,7 @@ docker build \
 
 #### build-rc ( release-canidate )
 Build the release-canidate docker image and Tag it with **rc**.
+</br>
 ```sh
 docker build \
 	-t dokuwiki:rc \
@@ -83,6 +77,7 @@ docker build \
 
 #### build-rc-installer
 Build the release-candidate docker image ( including the install.php ) and tag it with **release-candidate-installer**.
+</br>
 ```sh
 docker build \
 	-t dokuwiki:rc-installer \
@@ -93,6 +88,7 @@ docker build \
 
 #### build-rc-ldap
 Build the release-canidate docker image and enables LDAP options in the Dokuwiki.php configuration file.
+</br>
 ```sh
 docker build \
 	-t dokuwiki:rc-ldap \
@@ -103,6 +99,7 @@ docker build \
 
 #### build-rc-installer-ldap
 Build the release-candidate docker image ( including the install.php ) and enables LDAP options in the Dokuwiki.php configuration file.
+</br>
 ```sh
 docker build \
 	-t dokuwiki:rc-installer-ldap \
@@ -142,11 +139,6 @@ If you run the Image via `docker run` your can pass the environmen variables wit
 | LDAP_BIN_PW | coming soon |
 | LDAP_STARTTLS | coming soon |
 | LDAP_VERSION | coming soon |
-
-| Variable | Explanation |
-| -------- | ----------- |
-| **proxy:** ||
-| comming | soon |
 
 ## docker-compose
 For easier use there is a docker-compose.yml file under the **compose-files/** folder. This file contains all cofiguration for starting the dokuwiki and normally no extra configuration on this file is needed. Please be sure to define all neccessary environment variables in the .env file. There's a symlink called **environment** which points to the .env file ( maybe this makes it easier ).
