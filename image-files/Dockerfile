@@ -24,23 +24,23 @@ RUN apk --update --no-cache add apache2 \
         php7-json \
         php7-session \
         php7-xml &&\
-    if [ "${LDAP}" == "true" ]; then apk add php7-ldap; echo $" \
-$conf['plugin']['authldap']['server'] = getenv('LDAP_SERVER'); \n \
-$conf['plugin']['authldap']['usertree'] = getenv('LDAP_USER_TREE'); \n \
-$conf['plugin']['authldap']['grouptree'] = getenv('LDAP_GROUP_TREE'); \n \
-$conf['plugin']['authldap']['userfilter'] = getenv('LDAP_USER_FILTER'); \n \
-$conf['plugin']['authldap']['groupfilter'] = getenv('LDAP_GROUP_FILTER'); \n \
-$conf['plugin']['authldap']['grps'] = getenv('LDAP_GRPS'); \n \
-$conf['plugin']['authldap']['binddn'] = getenv('LDAP_BIND_DN'); \n \
-$conf['plugin']['authldap']['bindpw'] = getenv('LDAP_BIN_PW'); \n \
-$conf['plugin']['authldap']['starttls'] = getenv('LDAP_STARTTLS'); \n \
-$conf['plugin']['authldap']['version'] = getenv('LDAP_VERSION'); \
-    ">> /var/www/localhost/htdocs/conf/dokuwiki.php; fi &&\
+    if [ "${LDAP}" == "true" ]; then apk add php7-ldap; echo -e '\
+$conf["plugin"]["authldap"]["server"] = getenv("LDAP_SERVER");\n\
+$conf["plugin"]["authldap"]["usertree"] = getenv("LDAP_USER_TREE");\n\
+$conf["plugin"]["authldap"]["grouptree"] = getenv("LDAP_GROUP_TREE");\n\
+$conf["plugin"]["authldap"]["userfilter"] = getenv("LDAP_USER_FILTER");\n\
+$conf["plugin"]["authldap"]["groupfilter"] = getenv("LDAP_GROUP_FILTER");\n\
+$conf["plugin"]["authldap"]["grps"] = getenv("LDAP_GRPS");\n\
+$conf["plugin"]["authldap"]["binddn"] = getenv("LDAP_BIND_DN");\n\
+$conf["plugin"]["authldap"]["bindpw"] = getenv("LDAP_BIN_PW");\n\
+$conf["plugin"]["authldap"]["starttls"] = getenv("LDAP_STARTTLS");\n\
+$conf["plugin"]["authldap"]["version"] = getenv("LDAP_VERSION");\
+    '>> /var/www/localhost/htdocs/conf/dokuwiki.php; fi &&\
     cd /etc/apache2 &&\
     mkdir php_sessions certs &&\
     rm -f conf.d/ssl.conf &&\
-    echo $' \
-sessions.save_path = "/etc/apache2/php_sessions"\n \
+    echo -e '\
+sessions.save_path = "/etc/apache2/php_sessions"\n\
 sessions.use_only_cookies = 1 '>> /etc/php7/conf.d/00_custom.ini &&\
     cd /var/www/localhost/htdocs &&\
     if [ "${INSTALLER}" != "true" ]; then rm -f install.php; fi &&\
