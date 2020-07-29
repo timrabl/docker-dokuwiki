@@ -1,8 +1,7 @@
 version: '3.3'
 services:
   dokuwiki:
-    #    image: timrabl/dokuwiki:${VERSION}
-    image: dokuwiki:latest-installer-ldap
+    image: timrabl/dokuwiki:${VERSION}
     restart: unless-stopped
     env_file:
       - .env
