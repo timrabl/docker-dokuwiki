@@ -18,10 +18,7 @@ This makefile supports the follwing task's:
 #### get-stable
 Pull the latest version from the provided path ( **by default:** https://download.dokuwiki.org/src/dokuwiki/dokuwiki-stable.tgz), writes it into the tmp directory and extract it into the *image-files/dokuwiki-stable/* folder.
 
-#### get-stable
-Pull the latest release-candidate version from the provided path ( **by default:** https://download.dokuwiki.org/src/dokuwiki/dokuwiki-rc.tgz), writes it into the tmp directory and extract it into the *image-files/dokuwiki-release-canidate/* folder.
-
-#### build-latest ( stable )
+#### build-latest (stable)
 Build the latest docker image and Tag it with **latest** with the following command:
 </br>
 ```sh
@@ -65,50 +62,6 @@ docker build \
 	image-files/
 ```
 
-#### build-rc ( release-canidate )
-Build the release-canidate docker image and Tag it with **rc**.
-</br>
-```sh
-docker build \
-	-t dokuwiki:rc \
-	--build-arg VERSION=release-candidate \
-	image-files/
-```
-
-#### build-rc-installer
-Build the release-candidate docker image ( including the install.php ) and tag it with **release-candidate-installer**.
-</br>
-```sh
-docker build \
-	-t dokuwiki:rc-installer \
-	--build-arg VERSION=release-candidate \
-	--build-arg INSTALLER=true \
-	image-files/
-```
-
-#### build-rc-ldap
-Build the release-canidate docker image and enables LDAP options in the Dokuwiki.php configuration file.
-</br>
-```sh
-docker build \
-	-t dokuwiki:rc-ldap \
-	--build-arg VERSION=release-candidate \
-	--build-arg LDAP=true \
-	image-files/
-```
-
-#### build-rc-installer-ldap
-Build the release-candidate docker image ( including the install.php ) and enables LDAP options in the Dokuwiki.php configuration file.
-</br>
-```sh
-docker build \
-	-t dokuwiki:rc-installer-ldap \
-	--build-arg VERSION=release-candidate \
-	--build-arg INSTALLER=true \
-	--build-arg LDAP=true \
-	image-files/
-```
-
 ## enviroment varibales
 These are the main enviroment variables which can / must be passed to the docker image.
 If you run the Image via `docker run` your can pass the environmen variables with: `-e VAR_NAME=VAR_VALUE`
@@ -119,36 +72,41 @@ If you run the Image via `docker run` your can pass the environmen variables wit
 | -------- | ----------- |
 | **openssl:** ||
 | SSL_EXPIRE **\*** | The time period until the certificate becomes invalid |
-| SSL_C | Country code (e.q. US, GB, DE, ...) |
-| SSL_ST | State (e.q. London ) |
-| SSL_L | Location (e.q. London ) |
-| SSL_O | Organization (e.q. Example Organisation ) |
-| SSL_OU | Organizational Unit (e.q. IT Department ) |
-| SSL_CN **\*** | Common Name (e.q. example.com ) |
+| SSL_C | Country code (e.g. US, GB, DE, ...) |
+| SSL_ST | State (e.g. London ) |
+| SSL_L | Location (e.g. London ) |
+| SSL_O | Organization (e.g. Example Organisation ) |
+| SSL_OU | Organizational Unit (e.g. IT Department ) |
+| SSL_CN **\*** | Common Name (e.g. example.com ) |
 
 | Variable | Explanation |
 | -------- | ----------- |
 | **ldap:** ||
-| LDAP_SERVER | coming soon |
-| LDAP_USER_TREE | coming soon |
-| LDAP_GROUP_TREE | coming soon |
-| LDAP_USER_FILTER | coming soon |
-| LDAP_GROUP_FILTER | coming soon |
-| LDAP_GRPS | coming soon |
-| LDAP_BIND_DN | coming soon |
-| LDAP_BIN_PW | coming soon |
-| LDAP_STARTTLS | coming soon |
-| LDAP_VERSION | coming soon |
+| LDAP_SERVER | The LDAP server url. (e.g. ldaps://ldap-server.example.org:123) |
+| LDAP_USER_TREE | The user tree. (e.g. ou=users,dc=example,dc=org) |
+| LDAP_GROUP_TREE | The group tree. (e.g. ou=groups,dc=example,dc=org) |
+| LDAP_USER_FILTER | Userfilter for matching users. (e.g "(&(uid=%{user})(objectClass=posixAccount))") |
+| LDAP_GROUP_FILTER | Groupfilter for matching groups. (e.g. "(&(objectClass=posixGroup)(memberUID=%{user}))") |
+| LDAP_GRPS | Mapping can be used to specify where the internal data is coming from --> Mapping Where groups are defined in directory. |
+| LDAP_BIND_DN | Optional bind DN if anonymous login if not allowed. (e.g "'cn=admin, dc=example, dc=org'") |
+| LDAP_BIN_PW | Optional password for the above user. |
+| LDAP_STARTTLS | This enables the use of the STARTTLS command (enable = 1 / disable = 0) |
+| LDAP_VERSION | This is optional but may be required for your server (recommended: 3) |
 
 ## docker-compose
-For easier use there is a docker-compose.yml file under the **compose-files/** folder. This file contains all cofiguration for starting the dokuwiki and normally no extra configuration on this file is needed. Please be sure to define all neccessary environment variables in the .env file. There's a symlink called **environment** which points to the .env file ( maybe this makes it easier ).
+For easier use there is a docker-compose.yml file under the **compose-files/** folder.
+This file contains all cofiguration for starting the dokuwiki and normally no extra configuration on this file is needed.
+Please be sure to define all neccessary environment variables in the .env file.
+There's a symlink called **environment** which points to the .env file ( maybe this makes it easier ).
 Your 'll find all supported environment variables above in the **environment variables** section.
-
+</ br>
 After you have set your environment variables correctly, you can start the compose stack using the following command:
 ```sh
 docker-compose -f compose-files/docker-compose.yml up -d
 ```
-Optionally there is also a "make" task which allows you to start / stop the compose stack. These can be found in the make section.
+Optionally there is also a "make" task which allows you to start / stop the compose stack.
+These can be found in the make section.
 
 ## custom build hooks
-In this repository there are custom build hooks, which allow you to modify the build process in the docking hub or to pass build arguments. These can be found under `image-files/hooks/`.
+In this repository there are custom build hooks, which allow you to modify the build process
+in the docking hub or to pass build arguments. These can be found under `image-files/hooks/`.
