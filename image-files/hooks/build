@@ -5,6 +5,8 @@
 # $IMAGE_NAME var is injected into the build so the tag is correct.
 echo "[***] Build hook running"
 
+# should be always latest, since there is no release-canidate version anymore
+# maybe later multi version support
 C1=$(echo ${DOCKER_TAG} | cut -d "-" -f 1)
 C2=$(echo ${DOCKER_TAG} | cut -s -d "-" -f 2)
 C3=$(echo ${DOCKER_TAG} | cut -s -d "-" -f 3)
@@ -13,27 +15,26 @@ echo "C1: $C1 C2: $C2 C3: $C3"
 
 if [ ! -z "${C1}" ]; then
     if [ "${C1}" == "latest" ]; then
-        echo "[***] Set Version tag to: latest"
+        echo "[**custom Hook**] Set Version tag to: latest"
         FLAG_VERSION="--build-arg VERSION=latest"
-    elif [ "${C1}" == "rc" ]; then
-        echo "[***] Set Version tag to: release-candidate"
-        FLAG_VERSION="--build-arg VERSION=release-candidate"
+    #elif [ "${C1}" == "rc" ]; then
+    #    echo "[***] Set Version tag to: release-candidate"
+    #    FLAG_VERSION="--build-arg VERSION=release-candidate"
     else
-        echo "[***] Invalid Tag: ${DOCKER_TAG}"
+        echo "[**custom hook**] Invalid version Tag: ${DOCKER_TAG}"
         FLAG_VERSION=""
     fi
 fi
 
 if [ ! -z "${C2}" ]; then
     if [ "${C2}" == "installer" ]; then
-        echo "[***] Set second tag to: installer"
+        echo "[**custom hook**] Set second tag to: installer"
         FLAG_TWO="--build-arg INSTALLER=true"
     elif [ "${C2}" == "ldap" ]; then
-        echo "[***] Set second tag to: ldap"
+        echo "[**custom hook**] Set second tag to: ldap"
         FLAG_TWO="--build-arg LDAP=true"
     else
-        echo "[***] Invalid Tag: ${DOCKER_TAG}"
-        echo "[***] Failed while parsing second tag..."
+        echo "[**custom hook**] Invalid secound Tag: ${DOCKER_TAG}"
         FLAG_TWO=""
     fi
 fi
@@ -41,14 +42,13 @@ fi
 if [ ! -z "${C3}" ]; then
     if [ "${C2}" != "${C3}" ]; then
         if [ "${C3}" == "installer" ]; then
-            echo "[***] Set third tag to: installer"
+            echo "[**custom hook**] Set third tag to: installer"
             FLAG_THREE="--build-arg INSTALLER=true"
         elif [ "${C3}" == "ldap" ]; then
-            echo "[***] Set third tag to: ldap"
+            echo "[**custom hook**] Set third tag to: ldap"
             FLAG_THREE="--build-arg LDAP=true"
         else
-            echo "[***] Invalid Tag: ${DOCKER_TAG}"
-            echo "Failed while parsing third tag..."
+            echo "[**custom hook**] Invalid Tag: ${DOCKER_TAG}"
             FLAG_THREE=""
         fi
     fi
