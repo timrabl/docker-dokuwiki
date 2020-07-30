@@ -99,7 +99,7 @@ This file contains all cofiguration for starting the dokuwiki and normally no ex
 Please be sure to define all neccessary environment variables in the .env file.
 There's a symlink called **environment** which points to the .env file ( maybe this makes it easier ).
 Your 'll find all supported environment variables above in the **environment variables** section.
-</ br>
+</br>
 After you have set your environment variables correctly, you can start the compose stack using the following command:
 ```sh
 docker-compose -f compose-files/docker-compose.yml up -d
