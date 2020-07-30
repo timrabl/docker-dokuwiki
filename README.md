@@ -2,7 +2,7 @@
 # What is this ?
 This is the repository for the automated [Dockerhub](https://hub.docker.com/r/timrabl/dokuwiki "timrabl/dokuwiki on dockerhub.com") build.
 The automatic build process in the dockerhub builds the docker images which
-provides a dokuwiki instalation on an apache web server in an alpine linux
+provides a dokuwiki installation on an apache web server in an alpine linux
 docker container. In addition, functionalities such as TLS/SSL, LDAP
 and in the future also proxy will be supported.
 Improvements and suggestions are welcome.
